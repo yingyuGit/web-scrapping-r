@@ -1,7 +1,10 @@
 # web-scrapping-r
 R web scrapping: scrape recipes
 
+### Scrap recipes from Foodnetwork website
 ```
+library(rvest)
+
 # get recipe page links from a main list page
 home <- read_html("http://www.foodnetwork.com/recipes/food-network-kitchen/pancakes-recipe-1913844")
 recipe_links <- home %>% html_nodes(".recipepage .card-link") %>% html_attr("href")
@@ -24,4 +27,23 @@ for (link in recipe_links[1:3]) {
 # export data to csv format
 write.csv(recipes, "yourpath/recipes.csv")
 
+```
+
+### Other useful notes: Scrap tables 
+* it is not related to the recipe scrapping that has been mentioned above.
+```
+# import a webpage into R
+library(rvest)
+url <- "insert-your-url"
+page <- read_html(url)
+
+# get all the table elements and then pick second table(xml_node)
+tab <- page %>% html_nodes("table")
+tab <- tab[[2]]
+
+# change a xml_node to a data frame
+tab <- tab %>% html_table
+
+# set columns names
+tab <- tab %>% setNames(c("A", "B", "C"))
 ```
