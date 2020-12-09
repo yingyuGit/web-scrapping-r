@@ -10,6 +10,7 @@ home <- read_html("http://www.foodnetwork.com/recipes/food-network-kitchen/panca
 recipe_links <- home %>% html_nodes(".recipepage .card-link") %>% html_attr("href")
 recipe_links <- paste("https://foodnetwork.co.uk", recipe_links)
 recipe_links = gsub(" ", "", recipe_links) #removing extra spaces
+[//]: # (This is a comment on a new line.)
 
 # create an empty data frame to store the data later
 recipes = data.frame()
